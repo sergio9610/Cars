@@ -1,21 +1,28 @@
 from os import system
 from colorama import Fore
 import random
+import os
+
 
 # ---------- Figura ----------
 def figura():
     #Título
-    system("cls")    
-    print(Fore.BLUE+"       ___     _     ___   ___")
-    print(Fore.WHITE+"      / __|   /_\   | _ \ / __|")
-    print(Fore.BLUE+"     | (__   / _ \  |   / \ \ ")
-    print(Fore.WHITE+"      \__ | /_/ \_\ |_|_\ /_/")
+    system("cls")
+    print(Fore.WHITE+"      ___         ___         ___")
+    print(Fore.WHITE+"    __| (|__    __| (|__    __| (|__")
+    print(Fore.WHITE+"   |_()_()_|   |_()_()_|   |_()_()_|")    
+    # print(Fore.BLUE+"       ___     _     ___   ___")
+    # print(Fore.WHITE+"      / __|   /_\   | _ \ / __|")
+    # print(Fore.BLUE+"     | (__   / _ \  |   / \ \ ")
+    # print(Fore.WHITE+"      \__ | /_/ \_\ |_|_\ /_/")
+
 
 # ---------- Figura 2 ----------
 def visConfig():
-    print(Fore.BLUE+"\n   =================================")
+    print(Fore.BLUE+"\n   ===================================")
     print(Fore.WHITE+"        Configuración del Juego")
-    print(Fore.BLUE+"   =================================\n")
+    print(Fore.BLUE+"   ===================================\n")
+
 
 # ---------- Número de Jugadores ----------
 def numeroJugadores():
@@ -31,7 +38,8 @@ def nombreJugadores(numeroJugadores):
     listaJugadores = [];
     
     for i in range(numeroJugadores):
-        listaJugadores.append(input(Fore.WHITE+"   Ingrese el nickname del jugador "+str(i+1)+": "))
+        #listaJugadores.append(input(Fore.WHITE+"   Ingrese el nickname del jugador "+str(i+1)+": "))
+        listaJugadores.append("Player"+str(i+1))
     
     return listaJugadores
 
@@ -42,7 +50,7 @@ def pistas():
     print(Fore.BLUE+"\n   =================================")
     print(Fore.WHITE+"            Escoja la Pista")
     print(Fore.BLUE+"   =================================\n")
-    print(Fore.WHITE+"   Pista 1. 2km ")
+    print(Fore.WHITE+"   Pista 1. 1km ")
     print(Fore.WHITE+"   Pista 2. 5km ")
     print(Fore.WHITE+"   Pista 3. 10km ")
     print(Fore.WHITE+"   Pista 4. 21km ")
@@ -57,11 +65,12 @@ def datos(numJugadores,pista,listaJugadores):
     print("\n   Conductor       Carro          Carril\n")
     for numero in range(numJugadores):
         print(Fore.WHITE+"   "+listaJugadores[numero],end="")
-        for jugador in range(18-len(listaJugadores[numero])):
+        for jugador in range(20-len(listaJugadores[numero])):
             print(" ",end="")
         print(str(numero+1),end="")
         print("              "+str(numero+1))
-    
+
+
 # ---------- Carrera ----------
 def carrera(numJugadores,listaJugadores,pistas,pista):
     system("cls")
@@ -126,7 +135,8 @@ def carrera(numJugadores,listaJugadores,pistas,pista):
                     listaPodio.append(turno) 
         
         # Confirmación y verificación de carros en la meta
-        carrosMeta = 0 
+        carrosMeta = 0
+        #while 
         for i in range(numJugadores): 
             if listaCarriles[i] <= 0: 
                 carrosMeta = carrosMeta+1 # actualización de carros en la meta
@@ -136,18 +146,48 @@ def carrera(numJugadores,listaJugadores,pistas,pista):
     
     return listaPodio
 
+
 # ---------- Calificación ----------
 def calificacion(listaPodio):
     figura()
+    # Visualización Podio
     print(Fore.BLUE+"\n   =================================")
     print(Fore.WHITE+"                Podio")
     print(Fore.BLUE+"   =================================\n")
-    print("               "+Fore.WHITE+listaPodio[0])
-    print("               _____")
-    print("     "+Fore.WHITE+listaPodio[1]+"      /     \ ")
-    print("    ___       |  "+Fore.YELLOW+"1"+Fore.WHITE+"  |")
-    print(Fore.WHITE+"   /   \      \_____/         "+Fore.WHITE+listaPodio[2])
+    print("                "+Fore.WHITE+listaPodio[0])
+    print("                 _____")
+    print("   "+Fore.WHITE+listaPodio[1]+"      /     \ ")
+    print("    ___         |  "+Fore.YELLOW+"1"+Fore.WHITE+"  |")
+    print(Fore.WHITE+"   /   \        \_____/     "+Fore.WHITE+listaPodio[2])
     print("   | "+Fore.CYAN+"2"+Fore.WHITE+" |                     ___")
     print("   \___/                    /   \ ")
     print("                            | "+Fore.LIGHTRED_EX+"3"+Fore.WHITE+" |")
     print("                            \___/")
+
+
+# ---------- Persistencia de resultados ----------
+def guardarJuego(numJugadores,listaPodio):
+    persistencia = os.getcwd()+'\\persistencia.txt'
+    archivo = open(persistencia,'a')
+    archivo.write("\n   Posiciones:\n")
+    for numero in range(numJugadores):
+        archivo.write("   posicion "+str(numero+1)+":  "+listaPodio[numero]+'\n')
+    
+    archivo.close()
+    # Visualización de resultados
+    archivo2 = open(persistencia,'r')
+    impresion = archivo2.read()
+    print(impresion)
+    archivo2.close()
+
+    # archivo2 = open(persistencia,'r')
+    # lineas = archivo2.readlines() 
+    # archivo2.close()
+    # print(lineas)  
+    
+    # for linea in lineas:
+    #     index = linea.index("1:")
+    #     print(index)
+        # num = linea[:index]
+        # a = linea[index + 1:-1]
+        #print(num+"   "+a) 

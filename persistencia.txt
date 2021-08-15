@@ -1,0 +1,12 @@
+
+   Posiciones:
+   posicion 1:  Player2
+   posicion 2:  Player3
+   posicion 3:  Player1
+
+   Posiciones:
+   posicion 1:  Player3
+   posicion 2:  Player2
+   posicion 3:  Player1
+   posicion 4:  Player4
+   posicion 5:  Player5

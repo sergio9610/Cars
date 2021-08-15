@@ -2,6 +2,7 @@ from modulos import *
 
 # ------- Función de aplicación -------
 def main():
+    
     while True: 
     # Visualizaciones iniciales 
         figura()
@@ -12,10 +13,10 @@ def main():
             try:
                 global numJugadores    # se define globalmente para luego ser llamado
                 numJugadores = numeroJugadores()
-                if numJugadores > 0:
+                if 2 < numJugadores < 9:
                     break
                 else:
-                    print(Fore.RED+'\n   MENSAJE: Debe ingresar un número mayor a 0\n')
+                    print(Fore.RED+'\n   MENSAJE: Debe ingresar 3 jugadores mínimo, máximo 8\n')
             except ValueError:
                 print(Fore.RED+'\n   ERROR: Debe ingresar un número válido\n')
     
@@ -63,11 +64,28 @@ def main():
         while True:
             try:
                 calificacion(listaPodio)
-                enter = input("\n   Presione"+Fore.RED+" ENTER "+Fore.WHITE+"para Finalizar el Juego")
+                #enter = input("\n   Presione"+Fore.RED+" ENTER "+Fore.WHITE+"para Finalizar el Juego")
                 if True:
                     break
             except ValueError:
                 print("ERROR")
+
+    # Persistencia de Resultados
+        while True:
+            try:
+                guardarJuego(numJugadores,listaPodio)
+                #enter = input("\n   Presione"+Fore.RED+" ENTER "+Fore.WHITE+"para Finalizar el Juego")
+                if True:
+                    break
+            except ValueError:
+                print("ERROR")
+    
+    # Consulta al usuario para jugar nuevamente o no
+        otroJuego = input('\n   ¿Desea jugar nuevamente? S/N: ')
+        if otroJuego =='S' or otroJuego =='s':
+            True
+        if otroJuego =='N' or otroJuego =='n':
+            break    
 
 # ------- Ejecución de aplicación -------
 main()
