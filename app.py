@@ -2,8 +2,10 @@ from modulos import *
 
 # ------- Función de aplicación -------
 def main():
-    while True:  
+    while True: 
+    # Visualizaciones iniciales 
         figura()
+        visConfig()
 
     # Validación Número de Jugadores
         while True:
@@ -45,33 +47,27 @@ def main():
                     break
             except ValueError:
                 print('ERROR')
-            
+   
+    # Movimiento de la Carrera        
         while True:
             try:
-                pistasKm = [2000,5000,10000,21000]
-                carrera(numJugadores,listaJugadores,pistasKm,pista)
-                #enter = input("\n   Click en"+Fore.RED+" ENTER "+Fore.WHITE+"para continuar")
+                pistasKm = [1000,5000,10000,21000]
+                global listaPodio
+                listaPodio = carrera(numJugadores,listaJugadores,pistasKm,pista)
                 if True:
                     break
             except ValueError:
                 print('ERROR')
 
-
-    # Movimientos de la carrera
-        # while True:
-        #     try:
-        #         c = 1
-        #         pistas = [10000,15000,21000,42000]
-        #         carrera(numJugadores,listaJugadores,pistas,pista)
-        #         #enter = input("\n   Click en"+Fore.RED+" ENTER "+Fore.WHITE+"para continuar")
-        #         if c == 0:
-        #             break
-        #         else:
-        #             print('SIGAA')
-        #     except ValueError:
-        #         print('ERROR')
-
-
+    # Podio de la Carrera
+        while True:
+            try:
+                calificacion(listaPodio)
+                enter = input("\n   Presione"+Fore.RED+" ENTER "+Fore.WHITE+"para Finalizar el Juego")
+                if True:
+                    break
+            except ValueError:
+                print("ERROR")
 
 # ------- Ejecución de aplicación -------
 main()

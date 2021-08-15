@@ -10,6 +10,9 @@ def figura():
     print(Fore.WHITE+"      / __|   /_\   | _ \ / __|")
     print(Fore.BLUE+"     | (__   / _ \  |   / \ \ ")
     print(Fore.WHITE+"      \__ | /_/ \_\ |_|_\ /_/")
+
+# ---------- Figura 2 ----------
+def visConfig():
     print(Fore.BLUE+"\n   =================================")
     print(Fore.WHITE+"        Configuración del Juego")
     print(Fore.BLUE+"   =================================\n")
@@ -23,6 +26,7 @@ def numeroJugadores():
 # ---------- Nombre de Jugadores ----------
 def nombreJugadores(numeroJugadores):
     figura()
+    visConfig()
     global listaJugadores # se define globalmente para luego ser llamado
     listaJugadores = [];
     
@@ -35,7 +39,7 @@ def nombreJugadores(numeroJugadores):
 # ---------- Pistas ----------
 def pistas():
     figura()
-    print(Fore.BLUE+"   =================================")
+    print(Fore.BLUE+"\n   =================================")
     print(Fore.WHITE+"            Escoja la Pista")
     print(Fore.BLUE+"   =================================\n")
     print(Fore.WHITE+"   Pista 1. 2km ")
@@ -60,6 +64,7 @@ def datos(numJugadores,pista,listaJugadores):
     
 # ---------- Carrera ----------
 def carrera(numJugadores,listaJugadores,pistas,pista):
+    system("cls")
     listaCarriles = []
     # Se añaden carriles a partir del número de jugadores con el valor de la pista
     for i in range(int(numJugadores)): 
@@ -129,5 +134,20 @@ def carrera(numJugadores,listaJugadores,pistas,pista):
         if carrosMeta == numJugadores: 
             bandera = 1  # finalización de carrera
     
-    
     return listaPodio
+
+# ---------- Calificación ----------
+def calificacion(listaPodio):
+    figura()
+    print(Fore.BLUE+"\n   =================================")
+    print(Fore.WHITE+"                Podio")
+    print(Fore.BLUE+"   =================================\n")
+    print("               "+Fore.WHITE+listaPodio[0])
+    print("               _____")
+    print("     "+Fore.WHITE+listaPodio[1]+"      /     \ ")
+    print("    ___       |  "+Fore.YELLOW+"1"+Fore.WHITE+"  |")
+    print(Fore.WHITE+"   /   \      \_____/         "+Fore.WHITE+listaPodio[2])
+    print("   | "+Fore.CYAN+"2"+Fore.WHITE+" |                     ___")
+    print("   \___/                    /   \ ")
+    print("                            | "+Fore.LIGHTRED_EX+"3"+Fore.WHITE+" |")
+    print("                            \___/")
